@@ -30,7 +30,7 @@ namespace CarRentalManagement.Server.Controllers
         //public async Task<ActionResult<IEnumerable<Booking>>> GetColours()
         public async Task<IActionResult> GetBookings()
         {
-            var Bookings = await _unitOfWork.Bookings.GetAll();
+            var Bookings = await _unitOfWork.Bookings.GetAll(includes: q => q.Include(x => x.Vehicle).Include(x => x.Customer));
 
             //if (_context.Bookings == null)
             if (Bookings == null)
